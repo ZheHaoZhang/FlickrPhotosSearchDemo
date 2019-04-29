@@ -29,7 +29,6 @@ struct SearchData: Codable {
 
 
 // MARK: Convenience initializers
-
 extension SearchData {
     init?(data: Data) {
         guard let me = try? JSONDecoder().decode(SearchData.self, from: data) else { return nil }

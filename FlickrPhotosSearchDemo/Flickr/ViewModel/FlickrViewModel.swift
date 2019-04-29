@@ -14,10 +14,14 @@ class FlickrViewModel: NSObject {
     
     private var disposeBag = DisposeBag()
     
+    //Input
     public let searchTextSubject = PublishSubject<String>()
     public let searchPageSubject = PublishSubject<Int>()
-    public let searchPhotos = BehaviorRelay<[Photo]>(value: [])
     
+    //Output
+    public let searchPhotos = BehaviorRelay<[Photo]>(value: [])
+    public let favoritePhotos = BehaviorRelay<[Photo]>(value: [])
+
     var favoritePhotosDict = [String: Data]() {
         didSet{
             let favoriteData = Array(favoritePhotosDict.values)
@@ -28,14 +32,16 @@ class FlickrViewModel: NSObject {
             self.favoritePhotos.accept(photos)
         }
     }
-    let favoritePhotos = BehaviorRelay<[Photo]>(value: [])
     
     
     static let sharedInstance = FlickrViewModel()
     private override init() {
         super.init()
+        self.subscribeInput()
         self.readFavoritePhotos()
-        
+    }
+    
+    func subscribeInput()  {
         let searchInfo = Observable.combineLatest(searchTextSubject.asObserver(), searchPageSubject.asObserver())
         searchInfo
             .debounce(0.1, scheduler: MainScheduler.instance) //防抖 時間內沒更新才觸發
@@ -51,7 +57,6 @@ class FlickrViewModel: NSObject {
         searchTextSubject.onNext(searchText)
         searchPageSubject.onNext(searchPage)
     }
-    
     
     func fetchSearchData(searchText: String, searchPage: Int) {
         let sendData = ["text": searchText, "per_page": "\(searchPage)"]
@@ -69,6 +74,11 @@ class FlickrViewModel: NSObject {
             
         }
     }
+}
+
+
+//我的最愛相關
+extension FlickrViewModel {
     
     func isFavorite(photo: Photo) -> Bool {
         return self.favoritePhotosDict[photo.id] != nil

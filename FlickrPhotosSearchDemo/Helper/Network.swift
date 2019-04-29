@@ -12,7 +12,6 @@ import Alamofire
 class APIManager: NSObject {
 
     static let baseUrl = "https://api.flickr.com/services/rest/"
-
     static let flickrArgument = ["api_key": "5310c66c51415bb2d35f1412a6c704f3", "format": "json", "nojsoncallback": "1"]
     
     enum API: String{
