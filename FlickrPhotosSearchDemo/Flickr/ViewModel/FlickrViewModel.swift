@@ -33,7 +33,6 @@ class FlickrViewModel: NSObject {
         }
     }
     
-    
     static let sharedInstance = FlickrViewModel()
     private override init() {
         super.init()

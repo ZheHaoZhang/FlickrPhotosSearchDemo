@@ -20,41 +20,29 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var pageValidOutlet: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     
-    
     var disposeBag = DisposeBag()
-    lazy var searchValid = {
-        return searchTextField.rx.text.orEmpty
-            .map { $0.count >= minimalSearchLength }
-            .share(replay: 1)
-    }()
-    lazy var pageValid = {
-        return pageTextField.rx.text.orEmpty
-            .map { $0.isNumber }
-            .share(replay: 1)
-    }()
-    
-    
+    private var viewModel: SearchViewModel {
+        return SearchViewModel.init(searchText: searchTextField.rx.text.orEmpty.asObservable(), pageText: pageTextField.rx.text.orEmpty.asObservable())
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "搜尋輸入頁"
         self.setupRx()
     }
     func setupRx() {
         
-        searchValid
+        viewModel.searchValid
             .bind(to: searchValidOutlet.rx.isHidden)
             .disposed(by: disposeBag)
         
-        pageValid
+        viewModel.pageValid
             .debounce(1, scheduler: MainScheduler.instance) //防抖 時間內沒更新才觸發
             .subscribe({ (event) in
                 self.pageValidOutlet.isHidden = event.element ?? false || self.pageTextField.text == ""
             }).disposed(by: disposeBag)
         
-        let everythingValid = Observable.combineLatest(searchValid, pageValid) {$0 && $1}.share(replay: 1)
-        everythingValid.subscribe { (event) in
+        viewModel.everythingValid.subscribe { (event) in
             let nextValue = event.element ?? false
             self.doneButton.isEnabled = nextValue
             self.doneButton.backgroundColor = nextValue ? UIColor.blue : UIColor.darkGray

@@ -20,6 +20,7 @@
 		F3BCFF7C225DD81B00A3E458 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BCFF7B225DD81B00A3E458 /* SearchData.swift */; };
 		F3BCFF7E225DD84C00A3E458 /* FavoritePhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BCFF7D225DD84C00A3E458 /* FavoritePhotoCollectionViewController.swift */; };
 		F3BCFF80225DD86000A3E458 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BCFF7F225DD86000A3E458 /* PhotoCollectionViewCell.swift */; };
+		F3C11F052281778100AF5E2E /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C11F042281778100AF5E2E /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F3BCFF7B225DD81B00A3E458 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		F3BCFF7D225DD84C00A3E458 /* FavoritePhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F3BCFF7F225DD86000A3E458 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3C11F042281778100AF5E2E /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		F3BCFF73225DD74D00A3E458 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F3C11F042281778100AF5E2E /* SearchViewModel.swift */,
 				F3BCFF74225DD76200A3E458 /* FlickrViewModel.swift */,
 			);
 			path = ViewModel;
@@ -281,6 +284,7 @@
 				F3BCFF7C225DD81B00A3E458 /* SearchData.swift in Sources */,
 				F3BCFF72225DD72500A3E458 /* FlickrSearchCollectionViewController.swift in Sources */,
 				F3BCFF75225DD76200A3E458 /* FlickrViewModel.swift in Sources */,
+				F3C11F052281778100AF5E2E /* SearchViewModel.swift in Sources */,
 				F3BCFF79225DD7D000A3E458 /* Network.swift in Sources */,
 				F3BCFF7E225DD84C00A3E458 /* FavoritePhotoCollectionViewController.swift in Sources */,
 				F3BCFF57225DD2D400A3E458 /* AppDelegate.swift in Sources */,
